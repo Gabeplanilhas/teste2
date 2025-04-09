@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Organizador com Subpastas Suaves</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    .folder, .subfolder {
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin: 10px 0;
+      background: #fff;
+    }
+
+    .folder-header, .subfolder-header {
+      background: #eee;
+      padding: 10px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .folder-content, .subfolder-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      padding: 0 10px;
+      background-color: white;
+    }
+
+    a {
+      display: block;
+      margin: 8px 0;
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .descricao {
+      font-size: 12px;
+      color: #666;
+      margin-left: 10px;
+    }
+
+    .subfolder {
+      margin-top: 10px;
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📁 Organizador de Links</h1>
+
+  <!-- Pasta principal -->
+  <div class="folder">
+    <div class="folder-header" onclick="toggle(this)">🌐 Sites Úteis</div>
+    <div class="folder-content">
+      <a href="https://www.google.com" target="_blank">
+        Google
+        <div class="descricao">Motor de busca mais usado do mundo</div>
+      </a>
+      <a href="https://www.youtube.com" target="_blank">
+        YouTube
+        <div class="descricao">Plataforma de vídeos e transmissões ao vivo</div>
+      </a>
+    </div>
+  </div>
+
+  <!-- Pasta com subpastas -->
+  <div class="folder">
+    <div class="folder-header" onclick="toggle(this)">💻 Consultas</div>
+    <div class="folder-content">
+
+      <!-- Subpasta 1 (Cursos) -->
+      <div class="subfolder">
+        <div class="subfolder-header" onclick="toggle(this, true)">📚 IPTUs</div>
+        <div class="subfolder-content">
+          <a href="http://177.220.141.2:8280/issonline_/servlet/hcarneiptu" target="_blank">IPTU Paiçandu</a>
+          <a href="https://sarandi.eloweb.net/portal-contribuinte/consulta-cadastral" target="_blank">IPTU Sarandi</a>
+          <a href="https://tributos.maringa.pr.gov.br/portal-contribuinte/consulta-cadastral" target="_blank">IPTU Maringa</a>
+          <a href="https://www.udemy.com" target="_blank">Udemy</a>
+        </div>
+      </div>
+
+      <!-- Subpasta 2 -->
+      <div class="subfolder">
+        <div class="subfolder-header" onclick="toggle(this, true)">🧪 Ferramentas</div>
+        <div class="subfolder-content">
+          <a href="https://jsfiddle.net" target="_blank">
+            JSFiddle
+            <div class="descricao">Editor online para testar HTML, CSS e JavaScript</div>
+          </a>
+          <a href="https://codepen.io" target="_blank">
+            CodePen
+            <div class="descricao">Ambiente para criar e compartilhar projetos front-end</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Subpasta 3 -->
+      <div class="subfolder">
+        <div class="subfolder-header" onclick="toggle(this, true)">📦 Repositórios</div>
+        <div class="subfolder-content">
+          <a href="https://github.com/topics/html" target="_blank">
+            HTML no GitHub
+            <div class="descricao">Repositórios sobre HTML no GitHub</div>
+          </a>
+          <a href="https://github.com/topics/javascript" target="_blank">
+            JavaScript no GitHub
+            <div class="descricao">Repositórios sobre JavaScript no GitHub</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Subpasta 4 -->
+      <div class="subfolder">
+        <div class="subfolder-header" onclick="toggle(this, true)">📘 Documentações</div>
+        <div class="subfolder-content">
+          <a href="https://developer.mozilla.org/pt-BR/" target="_blank">
+            MDN Web Docs
+            <div class="descricao">Documentação oficial para tecnologias web</div>
+          </a>
+          <a href="https://devdocs.io" target="_blank">
+            DevDocs
+            <div class="descricao">Todas as documentações web num só lugar</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function toggle(element, isSub = false) {
+      const content = element.nextElementSibling;
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== "0px";
+
+      if (isOpen) {
+        content.style.maxHeight = "0px";
+
+        if (isSub) {
+          const parentContent = element.closest(".folder-content");
+          setTimeout(() => {
+            parentContent.style.maxHeight = parentContent.scrollHeight + "px";
+          }, 400);
+        }
+
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+
+        if (isSub) {
+          const parentContent = element.closest(".folder-content");
+          setTimeout(() => {
+            parentContent.style.maxHeight = parentContent.scrollHeight + "px";
+          }, 400);
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>
